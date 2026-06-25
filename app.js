@@ -21,6 +21,8 @@ const winPatterns = [
 //function to reset game
 const resetGame = () => {
     turnO = true;
+    count = 0;
+    winnerFound = false;
     enableBoxes();
     msgContainer.classList.add("hide");
     
@@ -106,14 +108,16 @@ const checkPattern = () => {
         let pos3Val = boxes[pattern[2]].innerText;
 
         if(pos1Val != "" && pos2Val != "" && pos3Val != ""){
-            if(pos1Val === pos2Val && pos2Val === pos3Val && count === 9){
+            if(pos1Val === pos2Val && pos2Val === pos3Val){
                 console.log("Winner ",pos1Val);
                 winnerFound = true;
                 showWinner(pos1Val);
-            }if(!winnerFound && count === 9){
-                DrawGame();
+                
             }
         }
+    }
+    if(count === 9 && !winnerFound){
+        DrawGame();
     }
 }
 
